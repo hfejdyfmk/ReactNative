@@ -1,8 +1,8 @@
 # ReactNative
   (1) $expo init <your project name>  
-  (2) 下載這個repository的檔案到本地端(git clone或直接下載)，並取代expo init <your project name>同樣名字的檔案和資料夾
-  (3) $expo start 或是 $expo start --tunnel
-  (4) 開啟emulator (eg. browser, android模擬器, android手機等)
+  (2) 下載這個repository的檔案到本地端(git clone或直接下載)，並取代expo init <your project name>同樣名字的檔案和資料夾  
+  (3) $expo start 或是 $expo start --tunnel  
+  (4) 開啟emulator (eg. browser, android模擬器, android手機等)  
   
 ## 檔案說明
 - components/element/test.jsx:  即時編輯與測試(目前import進Screen Two，reload時會顯示)
