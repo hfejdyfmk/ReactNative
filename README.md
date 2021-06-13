@@ -1,4 +1,5 @@
 # ReactNative
+## Usage
   (1) $expo init <your project name>  
   (2) 下載這個repository的檔案到本地端(git clone或直接下載)，並取代expo init <your project name>同樣名字的檔案和資料夾  
   (3) $expo start 或是 $expo start --tunnel  
