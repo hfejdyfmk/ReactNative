@@ -14,8 +14,8 @@
 
 ## 其他
 - 如果Reload慢，建議用expo+browswer模擬
-- 如果想在Android手機模擬，
-   (0)確保手機連到的wifi與電腦在同一個區域(連上同一個wifi，或是電腦開熱點給手機都可)
-   (1)在電腦執行時指令用$expo start --tunnel  
-   (2)手機下載Expo App 
-   (3)在電腦的cmd訊息出現"Tunnel is ready"後掃描QRcode)
+- 如果想在Android手機模擬，  
+   (0)確保手機連到的wifi與電腦在同一個區域(連上同一個wifi，或是電腦開熱點給手機都可)  
+   (1)在電腦執行時指令用$expo start --tunnel    
+   (2)手機下載Expo App    
+   (3)在電腦的cmd訊息出現"Tunnel is ready"後掃描QRcode)  
