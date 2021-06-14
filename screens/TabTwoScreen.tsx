@@ -7,6 +7,8 @@ import RemindItem from '../components/element/demo/RemindItem';
 import ListItem from '../components/element/demo/RemindItemList'
 import App from '../components/element/test';
 import { Text, View } from '../components/Themed';
+import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from '../components/states/post-reducers.js';
+
 
 export default function TabTwoScreen() {
   return (

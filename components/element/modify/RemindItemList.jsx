@@ -156,15 +156,15 @@ saveWholeList() {
 
 }
 
-export default ListItem
+//export default ListItem
 
-/*
+
 export default connect((state) => ({
     remindItems: state.reminder.items,
     deleteNotify: state.reminder.deleteNotify
     //saveAll: state.reminder.saveAll
 }))(ListItem);
-*/
+
 
 const styles = StyleSheet.create({
    container: {

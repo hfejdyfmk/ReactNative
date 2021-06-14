@@ -3,14 +3,6 @@ import { FlatList, SafeAreaView, StatusBar,View, Text, TouchableOpacity, TextInp
 
 import PropTypes, { any, string } from 'prop-types'
 import { connect } from 'react-redux';
-/*
-import {
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button
-} from 'react-native-reactstrap';
-*/
 
 import { getMoodIcon } from '../utilities/weather.js';
 import { inputItemName, deleteRemindItem, createSet, StoreItemName, deleteNotify } from '../states/post-actions.js';
@@ -214,6 +206,14 @@ const styles = StyleSheet.create({
       color: 'white',
    }
 })
+/*
+import {
+    InputGroup,
+    InputGroupAddon,
+    Input,
+    Button
+} from 'react-native-reactstrap';
+*/
 
 /*
 <TouchableOpacity

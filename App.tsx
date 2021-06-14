@@ -7,30 +7,29 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
+import thunkMiddleware from 'redux-thunk';
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 //import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 import { Provider } from 'react-redux';
+import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from './components/states/post-reducers.js';
 
-function todos(state = [], action) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return state.concat([action.text])
-    default:
-      return state
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
   }
 }
 
-const store = createStore(todos, ['Use Redux'])
-
-store.dispatch({
-  type: 'ADD_TODO',
-  text: 'Read the docs'
-})
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
+  
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const store = createStore(combineReducers({
+        searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
+    }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
 
   if (!isLoadingComplete) {
     return null;

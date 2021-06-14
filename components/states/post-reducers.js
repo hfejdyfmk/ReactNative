@@ -15,7 +15,7 @@ const initReminderState = {
     remindItemLoading: false,
     items: [],
     saveAll: false,
-    deleteNotify: ''
+    deleteNotify: '',
 };
 
 export function reminder(state = initReminderState, action) {
@@ -58,7 +58,8 @@ export function reminder(state = initReminderState, action) {
         case '@REMINDER/DELETE_NOTIFY':
             return {
                 ...state,
-                deleteNotify: action.id
+                deleteNotify: action.id,
+                //items: state.items,
             };
         default:
             return state;

@@ -11,13 +11,11 @@ import RemindItem from './RemindItem';
 class ListItem extends Component {
    
    static state = {
-      email: '-2',
-      password: '',
       itemName: '',
+
+
       remindItems: [],
       deleteNotify: '',
-
-      
    }
 
    constructor(props) {
@@ -156,15 +154,11 @@ saveWholeList() {
 
 }
 
-export default ListItem
+//export default ListItem
 
-/*
-export default connect((state) => ({
-    remindItems: state.reminder.items,
-    deleteNotify: state.reminder.deleteNotify
-    //saveAll: state.reminder.saveAll
-}))(ListItem);
-*/
+
+
+
 
 const styles = StyleSheet.create({
    container: {
@@ -218,6 +212,12 @@ const styles = StyleSheet.create({
       fontSize: 12,
     },
 })
+
+export default connect((state) => ({
+    remindItems: state.reminder.items,
+    deleteNotify: state.reminder.deleteNotify
+    //saveAll: state.reminder.saveAll
+}))(ListItem);
 
 /*
 <TextInput style = {styles.input}
