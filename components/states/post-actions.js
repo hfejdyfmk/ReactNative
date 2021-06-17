@@ -216,12 +216,14 @@ export function listMorePosts(searchText) {
     };
 };
 
-export function createPost(mood, text) {
+export function createPost(id, isPersonal, inputValue, locationTpye, volume, vibration) {
     return (dispatch, getState) => {
         //TODO
         dispatch(startLoading());
-
-        return createPostFromApi(mood, text).then(post => {
+        console.log("createPost");
+        //console.log(mood, text);
+        //console.log(this.props.id, this.props.isPersonal, this.props.inputValue, this.props.locationType, this.props.volume, this.props.vibration);
+        return createPostFromApi(id, isPersonal, inputValue, locationTpye, volume, vibration).then(post => {
             dispatch(listPosts());
         }).catch(err => {
             console.error('Error creating vote', err);
