@@ -149,6 +149,8 @@ export function listRemindItem(searchText) {
 };
 
 export function createSet(id, setting) {
+    console.log(id);
+    console.log(setting);
     return (dispatch, getState) => {
         dispatch(startItemLoading());
 

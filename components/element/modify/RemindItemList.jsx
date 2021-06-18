@@ -10,15 +10,11 @@ import RemindItem from './RemindItem';
 
 class ListItem extends Component {
    
-   static state = {
-      email: '-2',
-      password: '',
-      itemName: '',
-      remindItems: [],
-      deleteNotify: '',
-
-      
-   }
+   static propTypes = {
+        remindItems: PropTypes.array,
+        deleteNotify: PropTypes.string,
+        dispatch: PropTypes.func
+    };
 
    constructor(props) {
     super(props);
@@ -58,7 +54,7 @@ class ListItem extends Component {
               <Text>Reminding Items: &nbsp;</Text>
               <Button
                 title="Add Item"
-                onPress={() => {this.CreateItem}}   
+                onPress={this.CreateItem}   
               />
             </View>
             <View>

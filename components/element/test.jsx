@@ -3,6 +3,7 @@ import { Button, FlatList, SafeAreaView, StatusBar,View, Text, TouchableOpacity,
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { createRemindItem, listRemindItem } from '../states/post-actions.js';
+import RemindItem from './modify/RemindItem';
 import moment from 'moment';
 import { getMoodIcon } from '../utilities/weather.js';
 import { deletePost, setIsOpen, OpenCard } from '../states/post-actions.js';
@@ -32,28 +33,11 @@ const Accordion = () => {
   );
 };
 
-const FlatListTitle = () => {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={[
-          {key: 'Item'},
-          {key: 'Notify \nWhen: '},
-          {key: 'Leaving'},
-          {key: 'Entering'},
-        ]}
-        horizontal = {true}
-        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-      />
-    </View>
-  );
-}
-
 
 
 class Inputs extends Component {
-   
-   static state = {
+  
+  static state = {
     id: '',
     Name: '',
     locationType: '',
@@ -85,16 +69,24 @@ class Inputs extends Component {
     
     if (reminding && reminding.length) { //cannot be undefined
             const itemTableHead = (
-              <FlatListTitle/>
+              <View style={styles.container}>
+                <FlatList
+                  data={[
+                    {key: 'Item'},
+                    {key: 'Notify \nWhen: '},
+                    {key: 'Leaving'},
+                    {key: 'Entering'},
+                  ]}
+                  horizontal = {true}
+                  renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+                />
+              </View>
             );
             //console.log(reminding);
             const itemTableBody = reminding.map(item => (
-                //console.log(item);
-                
-                
                 <View style={styles.container}>
                   <FlatList
-                    key={item.key}
+                    key={item.id}
                     data={[
                       {key: item.Name},
                       {key: item.leaving ? 'V' : 'X'},
@@ -121,12 +113,8 @@ class Inputs extends Component {
       let vibtext = vibrate ? 'on' : 'Off';
 
       return (
-        /*
-        
-        */
         <View style = {styles.container}>
           <Accordion/>   
-           <FlatListTitle/>
         </View>
       )
    }
@@ -223,4 +211,23 @@ const styles = StyleSheet.create({
                }>
                <Text style = {styles.submitButtonText}> Leaving </Text>
             </TouchableOpacity>
+*/
+
+/*
+const FlatListTitle = () => {
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={[
+          {key: 'Item'},
+          {key: 'Notify \nWhen: '},
+          {key: 'Leaving'},
+          {key: 'Entering'},
+        ]}
+        horizontal = {true}
+        renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+      />
+    </View>
+  );
+}
 */

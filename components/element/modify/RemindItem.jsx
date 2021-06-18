@@ -28,14 +28,16 @@ const DATA = [
 
 
 class Inputs extends Component {
-   static state = {
-      itemName: '',
-      id: '',
-      inputValue: '',
-      leaving: false,
-      entering: false,
-      itemDanger: false,
-   }
+   
+   static propTypes = {
+      id: PropTypes.string,
+      inputValue: PropTypes.string,
+      //Name: PropTypes.string,
+      leaving: PropTypes.bool,
+      entering: PropTypes.bool,
+      itemDanger: PropTypes.bool,
+      dispatch: PropTypes.func
+  };
 
    constructor(props) {
       super(props);
@@ -50,14 +52,14 @@ class Inputs extends Component {
     const { id, leaving, entering } = this.props;
     let leave = (leaving ? true : false);
     let enter = (entering ? true : false);
-
+   
     return (
        <View>
        <View style = {styles.container}>
           <TouchableOpacity
              style = {styles.deleteButton}
              onPress = {
-                () => this.handleSet('delet')
+                () => this.handleSet('delete')
              }>
              <Text style = {styles.submitButtonText}> Delete </Text>
           </TouchableOpacity>
@@ -111,6 +113,7 @@ class Inputs extends Component {
   }
    
    handleSet(setting) {
+      //console.log("hi")
       if (setting != 'delete') {
           this.props.dispatch(createSet(this.props.id, setting));
           this.props.dispatch(StoreItemName(this.props.id, this.props.inputValue));

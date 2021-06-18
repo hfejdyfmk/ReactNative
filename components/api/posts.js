@@ -8,8 +8,8 @@ const postKey = 'posts';
 const itemKey = 'items';
 
 export function listPosts(searchText = '') {
-    localStorage.clear('items');
-    localStorage.clear('posts');
+    //localStorage.clear('items');
+    //localStorage.clear('posts');
     console.log(searchText);
     return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -231,6 +231,7 @@ function _setRemindItem(id, setting) {
         }
         return p;
     });
+    console.log(items);
     localStorage.setItem(itemKey, JSON.stringify(items));
 }
 

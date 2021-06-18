@@ -19,6 +19,7 @@ const initReminderState = {
 };
 
 export function reminder(state = initReminderState, action) {
+    
     switch (action.type) {
         case '@REMINDER/START_LOADING':
             return {
