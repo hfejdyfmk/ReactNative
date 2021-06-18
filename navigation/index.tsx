@@ -13,8 +13,18 @@ import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
-import {Provider} from 'react-redux'
-import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+
+import { createStore } from 'redux';
+
+import thunkMiddleware from 'redux-thunk';
+import { combineReducers, compose, applyMiddleware } from 'redux';
+
+//import thunkMiddleware from 'redux-thunk';
+// import loggerMiddleware from 'redux-logger';
+//import { Provider } from 'react-redux';
+import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from '../components/states/post-reducers.js';
+
 
 function todos(state = [], action) {
   switch (action.type) {
@@ -25,21 +35,29 @@ function todos(state = [], action) {
   }
 }
 
-const store = createStore(todos, ['Use Redux'])
+/*const store = createStore(todos, ['Use Redux'])
 
 store.dispatch({
   type: 'ADD_TODO',
   text: 'Read the docs'
-})
+})*/
+
+
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const store = createStore(combineReducers({
+    searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
+  }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
+
+
   return (
     <Provider store={store}>
-    <NavigationContainer
-      linking={LinkingConfiguration}
-      theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
+      <NavigationContainer
+        linking={LinkingConfiguration}
+        theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <RootNavigator />
+      </NavigationContainer>
     </Provider>
   );
 }

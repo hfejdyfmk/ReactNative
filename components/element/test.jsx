@@ -3,7 +3,6 @@ import { Button, FlatList, SafeAreaView, StatusBar,View, Text, TouchableOpacity,
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { createRemindItem, listRemindItem } from '../states/post-actions.js';
-import RemindItem from './demo/RemindItem';
 import moment from 'moment';
 import { getMoodIcon } from '../utilities/weather.js';
 import { deletePost, setIsOpen, OpenCard } from '../states/post-actions.js';

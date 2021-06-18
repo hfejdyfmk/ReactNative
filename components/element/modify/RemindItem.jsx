@@ -4,10 +4,10 @@ import { FlatList, SafeAreaView, StatusBar,View, Text, TouchableOpacity, TextInp
 import PropTypes, { any, string } from 'prop-types'
 import { connect } from 'react-redux';
 
-import { getMoodIcon } from '../utilities/weather.js';
-import { inputItemName, deleteRemindItem, createSet, StoreItemName, deleteNotify } from '../states/post-actions.js';
+import { getMoodIcon } from '../../utilities/weather.js';
+import { inputItemName, deleteRemindItem, createSet, StoreItemName, deleteNotify } from '../../states/post-actions.js';
 
-import { itemDanger } from '../states/post-actions.js';
+import { itemDanger } from '../../states/post-actions.js';
 
 const DATA = [
    {
@@ -26,40 +26,6 @@ const DATA = [
    </TouchableOpacity>
  );
 
- const EnterAndLeave = () => {
-   const [selectedId, setSelectedId] = useState(null);
- 
-   const renderItem = ({ item }) => {
-      //const backgroundColor = item.isSelect ? "#0000ff" : "#4A4444";
-     const backgroundColor = item.id === selectedId ? "#0000ff" : "#4A4444";
-     const color = item.id === selectedId ? 'white' : 'white';
- 
-     return (
-       <Item
-         item={item}
-         onPress={() => {setSelectedId(item.id); this.handleSet(item.title); }} // {item.isSelect = !item.isSelect}} //
-         backgroundColor={{ backgroundColor }}
-         textColor={{ color }}
-       />
-     );
-   };
- 
-   return (
-     <SafeAreaView style={styles.container}>
-       <FlatList
-         data={DATA}
-         renderItem={renderItem}
-         keyExtractor={(item) => item.id}
-         extraData={selectedId}
-         horizontal = {true}
-       />
-     </SafeAreaView>
-   );
- };
-
-
-
-
 
 class Inputs extends Component {
    static state = {
@@ -71,11 +37,19 @@ class Inputs extends Component {
       itemDanger: false,
    }
 
+   constructor(props) {
+      super(props);
+      this.ItemEl = null;
+      this.handleItemChange = this.handleItemChange.bind(this);
+      this.handleSet = this.handleSet.bind(this);
+      this.saveItem = this.saveItem.bind(this);
+  }
+
    render() {
        
     const { id, leaving, entering } = this.props;
-    let leave = (leaving ? 'primary' : 'secondary');
-    let enter = (entering ? 'primary' : 'secondary');
+    let leave = (leaving ? true : false);
+    let enter = (entering ? true : false);
 
     return (
        <View>
@@ -83,7 +57,7 @@ class Inputs extends Component {
           <TouchableOpacity
              style = {styles.deleteButton}
              onPress = {
-                () => this.handleSet('delete')
+                () => this.handleSet('delet')
              }>
              <Text style = {styles.submitButtonText}> Delete </Text>
           </TouchableOpacity>
@@ -95,22 +69,36 @@ class Inputs extends Component {
              autoCapitalize = "none"
              onChangeText = {this.handleItemChange}/>
 
-          
-          <EnterAndLeave/>
+         <TouchableOpacity
+            style={ enter===true? styles.deleteButton : styles.enterANDleavingButton}
+            onPress = {
+               () => this.handleSet('entering')
+            }>
+
+            
+             <Text style = {styles.submitButtonText}> Entering </Text>
+         </TouchableOpacity>
+
+          <TouchableOpacity
+             style={ leave===true? styles.deleteButton : styles.enterANDleavingButton}
+             onPress = {
+                () => this.handleSet('leaving')
+             }>
+            
+             <Text style = {styles.submitButtonText}> Leaving </Text>
+          </TouchableOpacity>
+
        </View>
        </View>
     )
  }
 
-
-
-
    componentDidMount() {
-      const { itemRef } = this.props;
+      const itemRef = () => this.props;
       itemRef(this);
   }
   componentWillUnmount() {
-      const { itemRef } = this.props;
+      const itemRef = () => this.props;
       itemRef(undefined);
   }
    
@@ -232,3 +220,36 @@ import {
              <Text style = {styles.submitButtonText}> Leaving </Text>
           </TouchableOpacity>
           */
+
+/*
+ const EnterAndLeave = () => {
+   const [selectedId, setSelectedId] = useState(null);
+ 
+   const renderItem = ({ item }) => {
+      //const backgroundColor = item.isSelect ? "#0000ff" : "#4A4444";
+     const backgroundColor = item.id === selectedId ? "#0000ff" : "#4A4444";
+     const color = item.id === selectedId ? 'white' : 'white';
+ 
+     return (
+       <Item
+         item={item}
+         onPress={() => {setSelectedId(item.id); this.handleSet(item.title); }} // {item.isSelect = !item.isSelect}} //
+         backgroundColor={{ backgroundColor }}
+         textColor={{ color }}
+       />
+     );
+   };
+ 
+   return (
+     <SafeAreaView style={styles.container}>
+       <FlatList
+         data={DATA}
+         renderItem={renderItem}
+         keyExtractor={(item) => item.id}
+         extraData={selectedId}
+         horizontal = {true}
+       />
+     </SafeAreaView>
+   );
+ };
+*/

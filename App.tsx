@@ -25,21 +25,19 @@ declare global {
 export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
-  
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-    const store = createStore(combineReducers({
-        searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
-    }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
+
+  //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  /*const store = createStore(combineReducers({
+      searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
+  }), composeEnhancers(applyMiddleware////*///(thunkMiddleware/*, loggerMiddleware*/)));
 
   if (!isLoadingComplete) {
     return null;
   } else {
     return (
       <SafeAreaProvider>
-      <Provider store={store}>
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
-      </Provider>
       </SafeAreaProvider>
     );
   }
