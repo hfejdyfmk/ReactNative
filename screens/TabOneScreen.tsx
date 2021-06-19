@@ -1,47 +1,34 @@
-
-import * as React from 'react';
+// import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 
 //new
 import PropTypes from 'prop-types';
 //import { Alert } from 'react-native-reactstrap'; //改用material UI
 import { connect } from 'react-redux';
 
-// <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+import React, { useState, useEffect } from 'react'
+import { GiftedChat, InputToolbar } from 'react-native-gifted-chat'
 
 export default function TabOneScreen() {
+  const [messages, setMessages] = useState<any[]>([]);
+
+  useEffect(() => {
+    setMessages([
+      {
+        _id: 1,
+        text: 'purse, phone!',
+        createdAt: new Date(),
+      },
+    ])
+  }, [])
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Notification</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> 
-    
-      <Text>This is Setting</Text>
-
-    </View>
-  );
+    <GiftedChat
+      messages={messages}
+      //get rid of the typing box
+      minComposerHeight={0}
+      maxComposerHeight={0}
+      minInputToolbarHeight={0}
+      renderInputToolbar={() => null}
+    />
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    //new
-    backgroundColor: 'rgba(245, 222, 179, 1.0)',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: { //畫面上的線
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
-
-
-
