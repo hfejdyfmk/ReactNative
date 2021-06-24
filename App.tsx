@@ -14,6 +14,8 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from './components/states/post-reducers.js';
 
+
+
 declare global {
   interface Window {
     __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
@@ -36,8 +38,10 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
+      
         <Navigation colorScheme={colorScheme} />
         <StatusBar />
+        
       </SafeAreaProvider>
     );
   }

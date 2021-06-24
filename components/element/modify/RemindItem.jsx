@@ -69,7 +69,7 @@ class Inputs extends Component {
              placeholder = "Iterm Name"
              placeholderTextColor = "#4A4444"
              autoCapitalize = "none"
-             onChangeText = {this.handleItemChange}/>
+             onChange = {this.handleItemChange}/>
 
          <TouchableOpacity
             style={ enter===true? styles.deleteButton : styles.enterANDleavingButton}
@@ -105,11 +105,13 @@ class Inputs extends Component {
   }
    
    handleItemChange(e) {
-      const text = e.target.value
-      this.props.dispatch(inputItemName(this.props.id, text));
-      if (text && this.props.itemDanger) {
-          this.props.dispatch(itemDanger(this.props.id, false));
-      }
+
+         const text = e.target.value
+         this.props.dispatch(inputItemName(this.props.id, text));
+         if (text && this.props.itemDanger) {
+            this.props.dispatch(itemDanger(this.props.id, false));
+         }
+      
   }
    
    handleSet(setting) {

@@ -2,137 +2,113 @@ import React, { Component, useState, useEffect, useRef } from 'react'
 import { Button, FlatList, SafeAreaView, StatusBar,View, Text, TouchableOpacity, TextInput, StyleSheet, TouchableHighlight } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { createRemindItem, listRemindItem } from '../states/post-actions.js';
+import { listPosts, createPost, createVote,  listRemindItem, setAdd } from '../states/post-actions.js';
+import Collapsible from 'react-native-collapsible';
+
+//testing
 import RemindItem from './modify/RemindItem';
+
 import moment from 'moment';
 import { getMoodIcon } from '../utilities/weather.js';
 import { deletePost, setIsOpen, OpenCard } from '../states/post-actions.js';
 import { List } from 'react-native-paper';
 
-const Accordion = () => {
-  const [expanded, setExpanded] = React.useState(true);
+//import { listPosts, createPost, createVote, listRemindItem, setAdd } from '../states/post-actions.js';
+/*
+import WeatherDisplay from 'components/WeatherDisplay.jsx';
+import WeatherForm from 'components/WeatherForm.jsx';
+import { cancelWeather } from 'api/open-weather-map.js';
+import { getWeather } from 'states/weather-actions.js';
+import PostForm from 'components/PostForm.jsx';
+import PostList from 'components/PostList.jsx';
+*/
 
-  const handlePress = () => setExpanded(!expanded);
-
-  return (
-
-    /*
-    <div>{header}</div>
-        <div>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</div>
-    <Button className='deletebtn' size='sm' color='danger' onClick={this.handleX}>X</Button>
-    */
-    <List.Section title="Accordions">
-      <List.Accordion
-        title = "test"
-        left={props => <List.Icon {...props} icon="folder" />}>
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
-      </List.Accordion>
-
-    </List.Section>
-  );
-};
-
+/*
+note: class name和export connect要改名字
+*/
 
 
 class Inputs extends Component {
-  
-  static state = {
-    id: '',
-    Name: '',
-    locationType: '',
-    reminding: [],
-    volume: '',
-    vibrate: false,
-    isOpen: false,
-    isPersonal: false,  
-   }
 
-   constructor(props) {
+  static propTypes = {
+    city: PropTypes.string,
+    code: PropTypes.number,
+    group: PropTypes.string,
+    description: PropTypes.string,
+    temp: PropTypes.number,
+    unit: PropTypes.string,
+    weatherLoading: PropTypes.bool,
+    masking: PropTypes.bool,
+    searchText: PropTypes.string,
+    postLoading: PropTypes.bool,
+    posts: PropTypes.array,
+    isAdd: PropTypes.bool,
+    dispatch: PropTypes.func
+  };
+
+  constructor(props) {
     super(props);
+    this.handleToggle = this.handleToggle.bind(this);
+}
+/*  
+componentDidMount() {
+  this.props.dispatch(getWeather('Hsinchu', this.props.unit));
+  this.props.dispatch(listPosts(this.props.searchText));
+  this.props.dispatch(listRemindItem());
+  //console.log(this.props.searchText);
+}
 
-    //this.handleClick = this.handleClick.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleX = this.handleX.bind(this);
+componentWillUnmount() {
+  if (this.props.weatherLoading) {
+      cancelWeather();
   }
+}
+
+componentWillReceiveProps(nextProps) {
+  if (nextProps.searchText !== this.props.searchText) {
+      this.props.dispatch(listPosts(nextProps.searchText));
+  }
+}*/
+
 
    render() {
-    const { id, Name, isPersonal, volume, vibrate, isOpen, locationType } = this.props;
-    let { reminding } = this.props;
-    let itemTable = undefined;
-    let header = isPersonal ? Name : locationType
-    let iconColor = isPersonal ? 'primary' : 'info';
-    console.log(reminding);
-
-    
-
-    
-    if (reminding && reminding.length) { //cannot be undefined
-            const itemTableHead = (
-              <View style={styles.container}>
-                <FlatList
-                  data={[
-                    {key: 'Item'},
-                    {key: 'Notify \nWhen: '},
-                    {key: 'Leaving'},
-                    {key: 'Entering'},
-                  ]}
-                  horizontal = {true}
-                  renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-                />
-              </View>
-            );
-            //console.log(reminding);
-            const itemTableBody = reminding.map(item => (
-                <View style={styles.container}>
-                  <FlatList
-                    key={item.id}
-                    data={[
-                      {key: item.Name},
-                      {key: item.leaving ? 'V' : 'X'},
-                      {key: item.entering ? 'V' : 'X'},
-                    ]}
-                    horizontal = {true}
-                    renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
-                  />
-                </View>
-                
-            ));
-            //console.log(itemTableBody);
-
-            itemTable = (
-                <View >
-                    <View>{itemTableHead}</View>
-                    <View>{itemTableBody}</View>
-                </View>
-            );
+    const { city, isAdd, group, description, temp, unit, masking, postLoading } = this.props;
+    let AddButtonColor = isAdd ? 'secondary' : 'primary';
+    let AddButtonText = isAdd ? 'Cancel' : 'Add One';
   
-        }
-    
-      
-      let vibtext = vibrate ? 'on' : 'Off';
-
       return (
         <View style = {styles.container}>
-          <Accordion/>   
+
+      <Button
+        color="#f194ff"
+        title={AddButtonText}
+        onPress={this.handleToggle}
+      />
+      <Collapsible collapsed={isAdd}>
+        <Text>hiiiii</Text>
+        <RemindItem/>
+      </Collapsible>
+                    
         </View>
       )
    }
 
-   
+   handleToggle(e) {
+    this.props.dispatch(setAdd());
+  }
 
-   handleOpen() {
-    this.props.dispatch(OpenCard(this.props.id));
-    }
-
-    handleX() {
-        this.props.dispatch(deletePost(this.props.id));
-    }
+  
 
 }
 
-export default Inputs
 
+export default connect(state => ({
+    ...state.weather,
+    unit: state.unit,
+    postLoading: state.post.postLoading,
+    searchText: state.searchText,
+    isAdd: state.postForm.add,
+}))(Inputs);
 
 
 const styles = StyleSheet.create({
@@ -147,7 +123,7 @@ const styles = StyleSheet.create({
       marginRight: 0,
       marginLeft: 0,
    },
-   deleteButton: {
+   Button: {
     backgroundColor: '#ff0000',
     padding: 10,
     margin: 15,

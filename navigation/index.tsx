@@ -19,6 +19,9 @@ import { createStore } from 'redux';
 
 import thunkMiddleware from 'redux-thunk';
 import { combineReducers, compose, applyMiddleware } from 'redux';
+import 'localstorage-polyfill';
+
+
 
 //import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
@@ -53,11 +56,13 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 
   return (
     <Provider store={store}>
+      
       <NavigationContainer
         linking={LinkingConfiguration}
         theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <RootNavigator />
       </NavigationContainer>
+    
     </Provider>
   );
 }
