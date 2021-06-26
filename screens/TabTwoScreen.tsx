@@ -14,53 +14,17 @@ import {Container, Content} from 'native-base'
 import PostList from '../components/element/modify/PostList.jsx';
 import PostForm from '../components/element/modify/PostForm.jsx';
 import PostItem from '../components/element/modify/PostItem.jsx';
+import Today from '../components/element/modify/Today.jsx';
+import PostMain from '../components/element/modify/MainPost.jsx';
+
 
 export default function TabTwoScreen() {
   return (
-    <Root>
-      <Container>
-        <Content>
-        <View style={styles.container}>
-          <Text style={styles.title}>Place</Text>
-          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-          
-          
-          <PostForm/>
-          <PostList/>
-          <PostItem/>
-         
-
-          <App/>
-        </View>
-      </Content>
-      </Container>
-    </Root>
-
+    <PostMain/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  switchButton: {
-    flexDirection: "row",
-    alignItems: 'center',
-    padding: 20,
-     
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+
 /*
 <PostForm/>
           <PostList/>

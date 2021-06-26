@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './WeatherDisplay.css';
+import {
+    View,
+    StyleSheet,
+} from 'react-native'
 
 export default class WeatherDisplay extends React.Component {
     static propTypes = {
@@ -19,10 +22,10 @@ export default class WeatherDisplay extends React.Component {
 
     render() {
         return (
-            <div className={`weather-display ${this.props.masking
+            <View className={`weather-display ${this.props.masking
                 ? 'masking'
                 : ''}`}>
-            </div>
+            </View>
         );
     }
 }

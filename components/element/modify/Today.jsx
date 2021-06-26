@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Button, Collapse } from 'reactstrap';
+
 import { connect } from 'react-redux';
 
-import WeatherDisplay from 'components/WeatherDisplay.jsx';
-import { cancelWeather } from 'api/open-weather-map.js';
-import { getWeather } from 'states/weather-actions.js';
-import { listPosts, createPost, createVote, listRemindItem, setAdd } from 'states/post-actions.js';
+import { listPosts, createVote, listRemindItem, setAdd } from '../../states/post-actions.js';
 import PostForm from './PostForm.jsx';
 import PostList from './PostList.jsx';
 
 import {
     Button,
-    Text,
 } from 'native-base'
 import Collapsible from 'react-native-collapsible';
 import { StyleSheet, Text, View } from "react-native";
@@ -40,7 +36,7 @@ class Today extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getWeather('Hsinchu', this.props.unit));
+        //this.props.dispatch(getWeather('Hsinchu', this.props.unit));
         this.props.dispatch(listPosts(this.props.searchText));
         this.props.dispatch(listRemindItem());
         //console.log(this.props.searchText);
@@ -48,7 +44,7 @@ class Today extends React.Component {
 
     componentWillUnmount() {
         if (this.props.weatherLoading) {
-            cancelWeather();
+            //cancelWeather();
         }
     }
 
@@ -68,22 +64,21 @@ class Today extends React.Component {
         let AddButtonText = isAdd ? 'Cancel' : 'Add One';
         /*return (
             <div>id</div>
+            <View>
+                <WeatherDisplay {...{ group, description, temp, unit, masking }} day='today' />
+            </View>
         );*/
+
         return (
             <View>
-                <View>
-                    <WeatherDisplay {...{ group, description, temp, unit, masking }} day='today' />
-                </View>
-                <View>
-                    <Button rounded onPress={this.handleToggle}><Text>{AddButtonText}</Text></Button>
-                    <Collapsible collapsed={isAdd}>
-                        <PostForm />
-                    </Collapsible>
-                    <PostList />{
-                        postLoading &&
-                        <Text>Loading...</Text>
-                    }
-                </View>
+                <Button rounded onPress={this.handleToggle}><Text>{AddButtonText}</Text></Button>
+                <Collapsible collapsed={isAdd}>
+                    <PostForm />
+                </Collapsible>
+                <PostList />{
+                    postLoading &&
+                    <Text>Loading...</Text>
+                }
             </View>
         );
     }

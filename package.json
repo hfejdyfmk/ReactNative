@@ -67,5 +67,10 @@
     "jest-expo": "~41.0.0",
     "typescript": "~4.0.0"
   },
-  "private": true
+  "private": true,
+  "name": "whereverur",
+  "description": "(1) $expo init <your project name>  \r   (2) 下載這個repository的檔案到本地端(git clone或直接下載)，並取代expo init <your project name>同樣名字的檔案和資料夾  \r   (3) $expo start 或是 $expo start --tunnel  \r   (4) 開啟emulator (eg. browser, android模擬器, android手機等)",
+  "version": "1.0.0",
+  "author": "",
+  "license": "ISC"
 }

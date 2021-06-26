@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-    List, ListItem
+    List,
+    ListItem
 } from 'native-base';
 
 import { StyleSheet, Text, View } from "react-native";
@@ -37,7 +38,7 @@ class PostList extends React.Component {
         );
         if (posts.length) {
             children = posts.map(p => (
-                <ListItem key='1' action>
+                <ListItem key={p.id} action>
                     <PostItem {...p} />
                 </ListItem>
             ));
