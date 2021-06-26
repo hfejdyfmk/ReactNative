@@ -57,7 +57,7 @@ class PostForm extends React.Component {
         this.inputEl = null;
         this.inputVol = null;
         this.locationTypeToggleEl = null;
-        this.itemList = React.createRef();
+        //this.itemList = React.createRef();
         this.Loactions = [
             { text: "Cafe" },
             { text: "Library" },
@@ -86,7 +86,7 @@ class PostForm extends React.Component {
             typeForm = (
                 <View>
                     <Text>Add a new Personal Place</Text>
-                    <TextInput innerRef={el => { this.inputEl = el }} value={this.props.inputValue} onChange={this.handleInputChange} placeholder="Give a Name for this place" />
+                    <TextInput innerRef={el => { this.inputEl = el }} value={this.props.inputValue} onChangeText={this.handleInputChange} placeholder="Give a Name for this place" />
                     <Button rounded success onPress={this.handleLTToggle}>
                         <Text>Google Map</Text>
                     </Button>
@@ -116,30 +116,30 @@ class PostForm extends React.Component {
                 </View >
             );
         }
-        //console.log(locationType);
+
         return (
             <View>
                 <View>
                     <View>
                         <Button rounded onPress={this.handleTypeForm}><Text>{typeFormName}</Text></Button>
                         {typeForm}
-                        <View style = {styles.container}>
-                            
+                        <View style={styles.container}>
+
                             <Text>Volume:</Text>
-                            
-                            <TextInput style = {styles.input}
-                                placeholder="0-100" 
-                                innerRef={el => { this.inputVol = el }} 
-                                value={this.props.volume} 
-                                onChange={this.handleVolumeChange}
-                                underlineColorAndroid = "transparent"
-                                placeholderTextColor = "#4A4444"
-                                autoCapitalize = "none"
+
+                            <TextInput style={styles.input}
+                                innerRef={el => { this.inputVol = el }}
+                                value={this.props.volume}
+                                placeholder="0-100"
+                                onChangeText={this.handleVolumeChange}
+                                underlineColorAndroid="transparent"
+                                placeholderTextColor="#4A4444"
+                                autoCapitalize="none"
                             />
-                            <Button rounded onPress={this.handleVibrate}><Text>Vibration: {vibtext}</Text></Button>
-                            
+                            <Text>Vibration:</Text><Button rounded onPress={this.handleVibrate}><Text>{vibtext}</Text></Button>
+
                         </View>
-                        <ListItem childRef={ref => (this.itemList = ref)} />{
+                        <ListItem />{
                             remindItemLoading &&
                             <Text>Loading...</Text>
                         }
@@ -152,7 +152,7 @@ class PostForm extends React.Component {
     componentDidMount() {
         const FormRef = () => this.props;
         FormRef(this);
-        this.props.dispatch(listRemindItem());
+        //this.props.dispatch(listRemindItem());
     }
     componentWillUnmount() {
         const FormRef = () => this.props;
@@ -178,7 +178,7 @@ class PostForm extends React.Component {
     }
 
     handleInputChange(e) {
-        const text = e.target.value
+        const text = e
         this.props.dispatch(input(text));
         if (text && this.props.inputDanger) {
             this.props.dispatch(inputDanger(false));
@@ -186,14 +186,12 @@ class PostForm extends React.Component {
     }
 
     handleVolumeChange(e) {
-        const text = e.target.value
-        //console.log(text);
-        let vol = Number(text, 10); //check if number
+        let vol = Number(e, 10); //check if number
         //console.log(this.props.volumeDanger);
         if (!isNaN(vol)) {
             if (vol >= 0 && vol <= 100) {
-                this.props.dispatch(inputVol(text));
-                if (text && this.props.volumeDanger) {
+                this.props.dispatch(inputVol(e));
+                if (e && this.props.volumeDanger) {
                     this.props.dispatch(volumeDanger(false));
                 }
             } else {
@@ -215,25 +213,28 @@ class PostForm extends React.Component {
         if (!this.props.inputValue && this.props.isPersonal) {
             this.props.dispatch(inputDanger(true));
             bad = true;
+            console.log("input value");
         }
 
         if (this.props.locationType === 'na' && !this.props.isPersonal) {
             this.props.dispatch(setlocationTypeToggle(true));
             bad = true;
+            console.log("Location");
         }
         //console.log(this.props.volume);
         if (!this.props.volume) {
             this.props.dispatch(volumeDanger(true));
             bad = true;
+            console.log("Dad volume");
         }
         //console.log(this.itemList);
-        if (this.itemList.current == null) { //Null
-            console.log('No receive reference from itemlist');
-            return; //abort
-        }
-        let itemGood = this.itemList.saveWholeList();
-        //console.log(locationType);
-        if (itemGood && !bad) {  //save
+        // if (this.itemList.current == null) { //Null
+        //     console.log('No receive reference from itemlist');
+        //     return; //abort
+        // }
+        //let itemGood = this.itemList.saveWholeList();
+        console.log(bad);
+        if (!bad) {  //save
             this.props.dispatch(createPost(this.props.id, this.props.isPersonal, this.props.inputValue, this.props.locationType, this.props.volume, this.props.vibration));
             this.props.dispatch(input(''));
             this.props.dispatch(selectlocationType('na'));
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
         marginRight: 0,
         marginLeft: 0,
     },
-    
+
     container: {
         flexDirection: "row",
         padding: 20,
@@ -276,5 +277,5 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginRight: 0,
         marginLeft: 0,
-     },
+    },
 })

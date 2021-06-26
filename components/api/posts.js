@@ -231,7 +231,7 @@ function _setRemindItem(id, setting) {
         }
         return p;
     });
-    console.log(items);
+    //console.log(items);
     localStorage.setItem(itemKey, JSON.stringify(items));
 }
 

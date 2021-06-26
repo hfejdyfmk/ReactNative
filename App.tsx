@@ -2,7 +2,8 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import * as Font from 'expo-font';
+import { Ionicons } from '@expo/vector-icons';
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
@@ -28,10 +29,6 @@ export default function App() {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
-  //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  /*const store = createStore(combineReducers({
-      searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
-  }), composeEnhancers(applyMiddleware////*///(thunkMiddleware/*, loggerMiddleware*/)));
 
   if (!isLoadingComplete) {
     return null;
@@ -45,4 +42,5 @@ export default function App() {
       </SafeAreaProvider>
     );
   }
+
 }
