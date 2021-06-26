@@ -14,11 +14,14 @@ const ThreeDots = () => {
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
   //toggle
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleChecked = () => setIsEnabled(previousState => !previousState);
-  const toggleDay = () => setIsEnabled(previousState => !previousState);
-  const toggleWeek = () => setIsEnabled(previousState => !previousState);
-  const toggleMonth = () => setIsEnabled(previousState => !previousState);
+  const [isCheckedEnabled, setCheckedIsEnabled] = useState(false);
+  const [isDayEnabled, setDayIsEnabled] = useState(false);
+  const [isWeekEnabled, setWeekIsEnabled] = useState(false);
+  const [isMonthEnabled, setMonthIsEnabled] = useState(false);
+  const toggleChecked = () => setCheckedIsEnabled(previousState => !previousState);
+  const toggleDay = () => setDayIsEnabled(previousState => !previousState);
+  const toggleWeek = () => setWeekIsEnabled(previousState => !previousState);
+  const toggleMonth = () => setMonthIsEnabled(previousState => !previousState);
 
 
   return (
@@ -36,44 +39,44 @@ const ThreeDots = () => {
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="checked" />
             <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleChecked}
-            value={isEnabled}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isCheckedEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleChecked}
+              value={isCheckedEnabled}
             />
           </View>
           <Divider />
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="day" />
             <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleDay}
-            value={isEnabled}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isDayEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleDay}
+              value={isDayEnabled}
             />
           </View>
           <Divider />
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="week" />
             <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleWeek}
-            value={isEnabled}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isWeekEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleWeek}
+              value={isWeekEnabled}
             />
           </View>
             <Divider />
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="month" />
             <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={toggleMonth}
-            value={isEnabled}
+              trackColor={{ false: "#767577", true: "#81b0ff" }}
+              thumbColor={isMonthEnabled ? "#f5dd4b" : "#f4f3f4"}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleMonth}
+              value={isMonthEnabled}
             />
           </View>
         </Menu>
