@@ -30,11 +30,13 @@ const ThreeDots = () => {
         <Menu
           visible={visible}
           onDismiss={closeMenu}
-          anchor={<Icon
-            name='more-vert'
-            size={ICON_SIZE}
-            color={'grey'}
-            onPress={openMenu}/>
+          anchor={
+            <Icon
+              name='more-vert'
+              size={ICON_SIZE}
+              color={'grey'}
+              onPress={openMenu}
+            />
           }>
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="checked" />
