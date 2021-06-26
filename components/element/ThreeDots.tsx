@@ -15,7 +15,7 @@ const ThreeDots = () => {
 
   return (
     <Provider>
-      <View>
+      <View style={{flexDirection: 'row-reverse'}}>
         <Menu
           visible={visible}
           onDismiss={closeMenu}
