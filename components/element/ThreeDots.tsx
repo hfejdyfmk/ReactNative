@@ -25,10 +25,13 @@ const ThreeDots = () => {
             color={'grey'}
             onPress={openMenu}/>
           }>
-          <Menu.Item onPress={() => {}} title="Item 1" />
-          <Menu.Item onPress={() => {}} title="Item 2" />
+          <Menu.Item onPress={() => {}} title="checked" />
           <Divider />
-          <Menu.Item onPress={() => {}} title="Item 3" />
+          <Menu.Item onPress={() => {}} title="day" />
+          <Divider />
+          <Menu.Item onPress={() => {}} title="week" />
+          <Divider />
+          <Menu.Item onPress={() => {}} title="month" />
         </Menu>
       </View>
     </Provider>
