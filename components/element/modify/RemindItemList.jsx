@@ -30,9 +30,9 @@ class ListItem extends Component {
     constructor(props) {
         super(props);
         this.CreateItem = this.CreateItem.bind(this);
-        this.saveWholeList = this.saveWholeList.bind(this);
-        this.refupdate = this.refupdate.bind(this);
-        this.itemEls = [];
+        //this.saveWholeList = this.saveWholeList.bind(this);
+        //this.refupdate = this.refupdate.bind(this);
+        //this.itemEls = [];
         //this.ri = [];
         //this.itemRefs = useRef([]);
     }
@@ -50,11 +50,11 @@ class ListItem extends Component {
         //console.log(remindItems.length);
         if (remindItems.length) {
             children = remindItems.map((r) => (
-                <RemindItem key={r.id} itemRef={ref => (this.itemEls.push(ref))} {...r} />
+                <RemindItem key={r.id} {...r} />
             ));
         }
         //console.log(this.itemELs);
-        this.refupdate();
+        //this.refupdate();
         //console.log(typeof({children}))
 
 
@@ -117,38 +117,38 @@ class ListItem extends Component {
         //this.refupdate();
     }
 
-    refupdate() {
-        for (let i = 0; i < this.itemEls.length; i++) {
-            if (this.itemEls[i] == undefined) {
-                //console.log('Find undefined');
-                this.itemEls.splice(i, 1);
-            } else {
-                //console.log(this.props.deleteNotify);
-                if (this.props.deleteNotify == this.itemEls[i].props.id) {
-                    this.itemEls.splice(i, 1);
-                }
-            }
-        }
-    }
+    // refupdate() {
+    //     for (let i = 0; i < this.itemEls.length; i++) {
+    //         if (this.itemEls[i] == undefined) {
+    //             //console.log('Find undefined');
+    //             this.itemEls.splice(i, 1);
+    //         } else {
+    //             //console.log(this.props.deleteNotify);
+    //             if (this.props.deleteNotify == this.itemEls[i].props.id) {
+    //                 this.itemEls.splice(i, 1);
+    //             }
+    //         }
+    //     }
+    // }
 
-    saveWholeList() {
-        let len = this.props.remindItems.length;
-        let save = true;
-        //console.log(bad);
-        for (let i = 0; i < len; i++) {
-            if (this.itemEls[i] != undefined) {
-                if (!this.itemEls[i].saveItem()) {   //false -> fail
-                    save = false;
-                }
-            }//else{
-            //console.log('Undefined Occurs!!');
-            //}
-        }
-        if (save) {
-            this.itemEls = [];
-        }
-        return save; //true -> success
-    }
+    // saveWholeList() {
+    //     let len = this.props.remindItems.length;
+    //     let save = true;
+    //     //console.log(bad);
+    //     for (let i = 0; i < len; i++) {
+    //         if (this.itemEls[i] != undefined) {
+    //             if (!this.itemEls[i].saveItem()) {   //false -> fail
+    //                 save = false;
+    //             }
+    //         }//else{
+    //         //console.log('Undefined Occurs!!');
+    //         //}
+    //     }
+    //     if (save) {
+    //         this.itemEls = [];
+    //     }
+    //     return save; //true -> success
+    // }
 
 
 

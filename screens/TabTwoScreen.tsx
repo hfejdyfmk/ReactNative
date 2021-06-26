@@ -9,12 +9,6 @@ import App from '../components/element/test';
 import { Text, View } from '../components/Themed';
 import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from '../components/states/post-reducers.js';
 
-import {Root} from 'native-base'
-import {Container, Content} from 'native-base'
-import PostList from '../components/element/modify/PostList.jsx';
-import PostForm from '../components/element/modify/PostForm.jsx';
-import PostItem from '../components/element/modify/PostItem.jsx';
-import Today from '../components/element/modify/Today.jsx';
 import PostMain from '../components/element/modify/MainPost.jsx';
 
 

@@ -55,7 +55,7 @@ class PostItem extends React.Component {
                 //console.log(reminding);
                 const itemTableBody = reminding.map(item => (
                     //console.log(item)
-                    <Text>{item.name}{item.leaving ? 'V' : 'X'}{item.entering ? 'V' : 'X'}</Text>
+                    <Text>{item.Name}{item.leaving ? 'V' : 'X'}{item.entering ? 'V' : 'X'}</Text>
                 ));
                 //console.log(itemTableBody);
                 itemTable = (
@@ -71,25 +71,24 @@ class PostItem extends React.Component {
 
         return (
             <View>
-            <View style = {styles.container}>
-            
-                <Pressable style={styles.collapsebutton} onPress={this.handleOpen}>
-                    <View>
-                        <Text>{header}</Text>
-                        <Text>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</Text>
-                    </View>
-                </Pressable>
-                
-                
-                <TouchableOpacity style={styles.buttonStyle} onPress={this.handleX}>
-                    <Text>X</Text>
-                </TouchableOpacity>
-            </View>
-           
-            <Collapsible collapsed={this.props.isOpen}>
-                <View>{itemTable}</View>
-                <Text>Open</Text>
-            </Collapsible>
+                <View style={styles.container}>
+
+                    <Pressable style={styles.collapsebutton} onPress={this.handleOpen}>
+                        <View>
+                            <Text>{header}</Text>
+                            <Text>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</Text>
+                        </View>
+                    </Pressable>
+
+
+                    <TouchableOpacity style={styles.buttonStyle} onPress={this.handleX}>
+                        <Text>X</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <Collapsible collapsed={this.props.isOpen}>
+                    <View>{itemTable}</View>
+                </Collapsible>
             </View>
             /*
             <Collapse style={styles.container}>
@@ -109,7 +108,7 @@ class PostItem extends React.Component {
                 </CollapseBody>
                 </View>
             </Collapse>*/
-          
+
         )
     }
 
@@ -154,5 +153,5 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginRight: 0,
         marginLeft: 0,
-     },
+    },
 })

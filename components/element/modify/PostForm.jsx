@@ -57,7 +57,7 @@ class PostForm extends React.Component {
         this.inputEl = null;
         this.inputVol = null;
         this.locationTypeToggleEl = null;
-        this.itemList = React.createRef();
+        //this.itemList = React.createRef();
         this.Loactions = [
             { text: "Cafe" },
             { text: "Library" },
@@ -139,7 +139,7 @@ class PostForm extends React.Component {
                             <Text>Vibration:</Text><Button rounded onPress={this.handleVibrate}><Text>{vibtext}</Text></Button>
 
                         </View>
-                        <ListItem childRef={ref => (this.itemList.current = ref)} />{
+                        <ListItem />{
                             remindItemLoading &&
                             <Text>Loading...</Text>
                         }
@@ -213,25 +213,28 @@ class PostForm extends React.Component {
         if (!this.props.inputValue && this.props.isPersonal) {
             this.props.dispatch(inputDanger(true));
             bad = true;
+            console.log("input value");
         }
 
         if (this.props.locationType === 'na' && !this.props.isPersonal) {
             this.props.dispatch(setlocationTypeToggle(true));
             bad = true;
+            console.log("Location");
         }
         //console.log(this.props.volume);
         if (!this.props.volume) {
             this.props.dispatch(volumeDanger(true));
             bad = true;
+            console.log("Dad volume");
         }
         //console.log(this.itemList);
-        if (this.itemList.current == null) { //Null
-            console.log('No receive reference from itemlist');
-            return; //abort
-        }
-        let itemGood = this.itemList.saveWholeList();
-        //console.log(locationType);
-        if (itemGood && !bad) {  //save
+        // if (this.itemList.current == null) { //Null
+        //     console.log('No receive reference from itemlist');
+        //     return; //abort
+        // }
+        //let itemGood = this.itemList.saveWholeList();
+        console.log(bad);
+        if (!bad) {  //save
             this.props.dispatch(createPost(this.props.id, this.props.isPersonal, this.props.inputValue, this.props.locationType, this.props.volume, this.props.vibration));
             this.props.dispatch(input(''));
             this.props.dispatch(selectlocationType('na'));
