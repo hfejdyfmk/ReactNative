@@ -2,7 +2,7 @@
 import Icon from 'react-native-vector-icons/MaterialIcons'
 // import PropTypes from 'prop-types'
 
-const ICON_SIZE = 24
+const ICON_SIZE = 24;
 
 import React, { useState, useEffect } from 'react'
 import { View, Switch, StyleSheet} from 'react-native';
@@ -30,11 +30,13 @@ const ThreeDots = () => {
         <Menu
           visible={visible}
           onDismiss={closeMenu}
-          anchor={<Icon
-            name='more-vert'
-            size={ICON_SIZE}
-            color={'grey'}
-            onPress={openMenu}/>
+          anchor={
+            <Icon
+              name='more-vert'
+              size={ICON_SIZE}
+              color={'grey'}
+              onPress={openMenu}
+            />
           }>
           <View style={{flexDirection: 'row', flexGrow: 1, justifyContent:'center', alignItems: 'center'}}>
             <Menu.Item onPress={() => {}} title="checked" />
