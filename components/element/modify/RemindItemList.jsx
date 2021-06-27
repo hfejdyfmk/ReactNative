@@ -1,13 +1,8 @@
-import React, { Component, useState, useEffect, useRef } from 'react'
+import React, { Component } from 'react'
 import {
     Button,
-    FlatList,
-    SafeAreaView,
-    StatusBar,
     View,
     Text,
-    TouchableOpacity,
-    TextInput,
     StyleSheet,
     TouchableHighlight
 } from 'react-native'
@@ -15,9 +10,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { createRemindItem, listRemindItem } from '../../states/post-actions.js';
 import RemindItem from './RemindItem';
-
-
-
 
 class ListItem extends Component {
 
@@ -43,7 +35,7 @@ class ListItem extends Component {
 
         let children = (
             <View>
-                <Text>No item here. Go add some items.</Text>
+                <Text style={{ textAlign: 'center', justifyContent: 'center' }}>No item here. Go add some items.</Text>
             </View>
         );
 
@@ -62,7 +54,7 @@ class ListItem extends Component {
         return (
             <View style={{ flexDirection: "column", justifyContent: 'center' }}>
                 <View style={styles.container}>
-                    <Text>Reminding Items: &nbsp;</Text>
+                    <Text style={styles.Lable}>Reminding Items: &nbsp;</Text>
                     <Button
                         title="Add Item"
                         onPress={this.CreateItem}
@@ -72,43 +64,15 @@ class ListItem extends Component {
                     {children}
                 </View>
             </View>
-            /*
-                     <View style = {styles.container}>
-                        <TouchableOpacity
-                           style = {styles.deleteButton}
-                           onPress = {
-                              () => this.checkItermName(this.state.itemName) //(1)
-                           }>
-                           <Text style = {styles.submitButtonText}> Delete </Text>
-                        </TouchableOpacity>
-            
-                        <TextInput style = {styles.input}
-                           underlineColorAndroid = "transparent"
-                           placeholder = "  Iterm Name"
-                           placeholderTextColor = "#4A4444"
-                           autoCapitalize = "none"
-            
-                            // (1)
-                           onChangeText = {this.handleItermName}/> 
-            
-                     </View>*/
         )
     }
     componentDidMount() {
         const childRef = () => this.props;
         childRef(this);
-        /*
-        const { childRef } = this.props;
-            childRef(this);
-        */
     }
     componentWillUnmount() {
         const childRef = () => this.props;
         childRef(undefined);
-        /*
-        const { childRef } = this.props;
-        childRef(undefined);
-        */
     }
 
     CreateItem() {
@@ -213,7 +177,7 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     item: {
-        padding: 10,
+        padding: 5,
         margin: 15,
         height: 40,
         marginRight: 0,
@@ -224,29 +188,11 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 12,
     },
+    Lable: {
+        textAlign: 'center',
+        fontSize: 20,
+        justifyContent: 'center',
+        paddingTop: 0,
+        paddingHorizontal: 2,
+    },
 })
-
-/*
-<TextInput style = {styles.input}
-               underlineColorAndroid = "transparent"
-               placeholder = "Iterm Name"
-               placeholderTextColor = "#4A4444"
-               autoCapitalize = "none"
-               onChangeText = {this.handleItermName}/>
-            <TouchableOpacity
-               style = {styles.enterANDleavingButton}
-               onPress = {
-                  () => this.login(this.state.email, this.state.password)
-               }>
-               <Text style = {styles.submitButtonText}> Entering </Text>
-            </TouchableOpacity>
-
-
-            <TouchableOpacity
-               style = {styles.enterANDleavingButton}
-               onPress = {
-                  () => this.login(this.state.email, this.state.password)
-               }>
-               <Text style = {styles.submitButtonText}> Leaving </Text>
-            </TouchableOpacity>
-*/

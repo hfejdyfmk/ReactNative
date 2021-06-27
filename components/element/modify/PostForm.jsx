@@ -78,15 +78,15 @@ class PostForm extends React.Component {
         const inputDanger = this.props.inputDanger ? 'has-danger' : '';
         let vibtext = (vibration == true) ? 'On' : 'Off';
         let typeFormName = isPersonal ? 'Personal' : 'General';
-        let typeFormColor = isPersonal ? 'primary' : 'info';
-        let vibColor = (vibration == true) ? 'primary' : 'secondary';
+        let typeFormColor = isPersonal ? 'darkturquoise' : 'royalblue';;
+        let vibColor = (vibration == true) ? 'dodgerblue' : 'gray'
         let typeForm = undefined;
 
         if (isPersonal) {
             typeForm = (
                 <View>
                     <Text>Add a new Personal Place</Text>
-                    <TextInput innerRef={el => { this.inputEl = el }} value={this.props.inputValue} onChangeText={this.handleInputChange} placeholder="Give a Name for this place" />
+                    <TextInput style={styles.input} innerRef={el => { this.inputEl = el }} value={this.props.inputValue} onChangeText={this.handleInputChange} placeholder="Give a Name for this place" />
                     <Button rounded success onPress={this.handleLTToggle}>
                         <Text>Google Map</Text>
                     </Button>
@@ -97,7 +97,7 @@ class PostForm extends React.Component {
             typeForm = (
                 <View>
                     <View>
-                        <Button rounded onPress={() => {
+                        <Button success rounded onPress={() => {
                             ActionSheet.show(
                                 {
                                     options: this.Loactions,
@@ -118,34 +118,32 @@ class PostForm extends React.Component {
         }
 
         return (
-            <View>
+            <View style={styles.formBackground}>
                 <View>
-                    <View>
-                        <Button rounded onPress={this.handleTypeForm}><Text>{typeFormName}</Text></Button>
-                        {typeForm}
-                        <View style={styles.container}>
+                    <Button rounded onPress={this.handleTypeForm} style={{ backgroundColor: typeFormColor }}><Text>{typeFormName}</Text></Button>
+                    {typeForm}
+                    <View style={styles.container}>
 
-                            <Text>Volume:</Text>
+                        <Text style={styles.Lable}>Volume:</Text>
 
-                            <TextInput style={styles.input}
-                                innerRef={el => { this.inputVol = el }}
-                                value={this.props.volume}
-                                placeholder="0-100"
-                                onChangeText={this.handleVolumeChange}
-                                underlineColorAndroid="transparent"
-                                placeholderTextColor="#4A4444"
-                                autoCapitalize="none"
-                            />
-                            <Text>Vibration:</Text><Button rounded onPress={this.handleVibrate}><Text>{vibtext}</Text></Button>
+                        <TextInput style={styles.input}
+                            innerRef={el => { this.inputVol = el }}
+                            value={this.props.volume}
+                            placeholder="0-100"
+                            onChangeText={this.handleVolumeChange}
+                            underlineColorAndroid="transparent"
+                            placeholderTextColor="#4A4444"
+                            autoCapitalize="none"
+                        />
+                        <Text style={styles.Lable}>Vibration:</Text><Button rounded onPress={this.handleVibrate} style={{ backgroundColor: vibColor, margin: 6 }}><Text>{vibtext}</Text></Button>
 
-                        </View>
-                        <ListItem />{
-                            remindItemLoading &&
-                            <Text>Loading...</Text>
-                        }
                     </View>
-                    <Button rounded onPress={this.handlePost}><Text>Set</Text></Button>
+                    <ListItem />{
+                        remindItemLoading &&
+                        <Text>Loading...</Text>
+                    }
                 </View>
+                <Button rounded onPress={this.handlePost}><Text>Set</Text></Button>
             </View>
         );
     }
@@ -260,8 +258,8 @@ export default connect(state => ({
 const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: '#ff0000',
-        padding: 10,
-        margin: 15,
+        padding: 5,
+        margin: 5,
         height: 40,
         marginRight: 0,
         marginLeft: 0,
@@ -269,7 +267,10 @@ const styles = StyleSheet.create({
 
     container: {
         flexDirection: "row",
-        padding: 20,
+        padding: 0,
+        justifyContent: 'center',
+        width: 250,
+        margin: 0,
     },
     input: {
         margin: 15,
@@ -277,5 +278,20 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         marginRight: 0,
         marginLeft: 0,
+        backgroundColor: 'white'
+    },
+    formBackground: {
+        backgroundColor: 'paleturquoise',
+        opacity: 0.95,
+        borderRadius: 8,
+        padding: 15,
+        margin: 2,
+    },
+    Lable: {
+        textAlign: 'center',
+        fontSize: 20,
+        justifyContent: 'center',
+        paddingTop: 15,
+        paddingHorizontal: 8,
     },
 })

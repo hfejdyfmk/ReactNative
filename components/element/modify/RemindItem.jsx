@@ -141,19 +141,24 @@ export default connect((state, ownProps) => ({
 const styles = StyleSheet.create({
    container: {
       flexDirection: "row",
-      padding: 20,
+      paddingRight: 5,
+      paddingLeft: 5,
+      paddingTop: 0,
+      paddingBottom: 0,
+
    },
    input: {
-      margin: 15,
+      margin: 5,
       borderColor: '#4A4444',
       borderWidth: 1,
       marginRight: 0,
       marginLeft: 0,
+      backgroundColor: 'white'
    },
    deleteButton: {
       backgroundColor: '#ff0000',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
    enterANDleavingButton: {
       backgroundColor: '#4A4444',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,
@@ -169,7 +174,7 @@ const styles = StyleSheet.create({
    onPressedButton: {
       backgroundColor: '#0000ff',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,

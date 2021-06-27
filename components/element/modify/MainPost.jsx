@@ -25,8 +25,8 @@ export default class PostMain extends React.Component {
             );
         } else {  //finish loading
             return (
-                <Root>
-                    <Container>
+                <Root >
+                    <Container style={{ backgroundColor: 'rgba(245, 222, 179, 1.0)' }}>
                         <Content>
                             <View style={styles.container}>
                                 <Text style={styles.title}>Place</Text>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: 'rgba(245, 222, 179, 1.0)',
     },
     switchButton: {
         flexDirection: "row",
