@@ -149,8 +149,8 @@ export function listRemindItem(searchText) {
 };
 
 export function createSet(id, setting) {
-    console.log(id);
-    console.log(setting);
+    //console.log(id);
+    //console.log(setting);
     return (dispatch, getState) => {
         dispatch(startItemLoading());
 
@@ -194,7 +194,7 @@ export function listPosts(searchText) {
     return (dispatch, getState) => {
         dispatch(startLoading());
         return listPostsFromApi(searchText).then(posts => {
-            console.log(posts);
+            //console.log(posts);
             dispatch(endListPosts(posts));
         }).catch(err => {
             console.error('Error listing posts', err);
@@ -222,9 +222,6 @@ export function createPost(id, isPersonal, inputValue, locationTpye, volume, vib
     return (dispatch, getState) => {
         //TODO
         dispatch(startLoading());
-        console.log("createPost");
-        //console.log(mood, text);
-        //console.log(this.props.id, this.props.isPersonal, this.props.inputValue, this.props.locationType, this.props.volume, this.props.vibration);
         return createPostFromApi(id, isPersonal, inputValue, locationTpye, volume, vibration).then(post => {
             dispatch(listPosts());
         }).catch(err => {

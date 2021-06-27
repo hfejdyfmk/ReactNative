@@ -44,7 +44,7 @@ class Inputs extends Component {
       this.ItemEl = null;
       this.handleItemChange = this.handleItemChange.bind(this);
       this.handleSet = this.handleSet.bind(this);
-      this.saveItem = this.saveItem.bind(this);
+      //this.saveItem = this.saveItem.bind(this);
    }
 
    render() {
@@ -105,9 +105,8 @@ class Inputs extends Component {
    }
 
    handleItemChange(e) {
-
       const text = e
-      this.props.dispatch(inputItemName(this.props.id, text));
+      this.props.dispatch(StoreItemName(this.props.id, text));
       if (text && this.props.itemDanger) {
          this.props.dispatch(itemDanger(this.props.id, false));
       }
@@ -118,37 +117,17 @@ class Inputs extends Component {
       //console.log("hi")
       if (setting != 'delete') {
          this.props.dispatch(createSet(this.props.id, setting));
-         this.props.dispatch(StoreItemName(this.props.id, this.props.inputValue));
+         //this.props.dispatch(StoreItemName(this.props.id, this.props.inputValue));
          //console.log(this.props.id);
       } else {
          this.props.dispatch(deleteRemindItem(this.props.id));
          this.props.dispatch(deleteNotify(this.props.id));
       }
    }
-   saveItem() {
-      //console.log(this.props.id);
-      if (!this.props.inputValue) {
-         //console.log('fuck');
-         this.props.dispatch(itemDanger(this.props.id, true));
-         return false;
-      }
-      //console.log(this.props.inputValue);
-      this.props.dispatch(StoreItemName(this.props.id, this.props.inputValue));
-      return true;
-      //this.props.dispatch(AllSafe());
-   }
-
-
-
 
    handleItermName = (text) => {
       this.setState({ itemName: text })
    }
-   /*
-      login = (email, pass) => {
-         alert('email: ' + email + ' password: ' + pass)
-      }
-   */
 
 }
 
@@ -162,19 +141,24 @@ export default connect((state, ownProps) => ({
 const styles = StyleSheet.create({
    container: {
       flexDirection: "row",
-      padding: 20,
+      paddingRight: 5,
+      paddingLeft: 5,
+      paddingTop: 0,
+      paddingBottom: 0,
+
    },
    input: {
-      margin: 15,
+      margin: 5,
       borderColor: '#4A4444',
       borderWidth: 1,
       marginRight: 0,
       marginLeft: 0,
+      backgroundColor: 'white'
    },
    deleteButton: {
       backgroundColor: '#ff0000',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,
@@ -182,7 +166,7 @@ const styles = StyleSheet.create({
    enterANDleavingButton: {
       backgroundColor: '#4A4444',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,
@@ -190,7 +174,7 @@ const styles = StyleSheet.create({
    onPressedButton: {
       backgroundColor: '#0000ff',
       padding: 10,
-      margin: 15,
+      margin: 5,
       height: 40,
       marginRight: 0,
       marginLeft: 0,
