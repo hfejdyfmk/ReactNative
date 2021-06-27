@@ -17,16 +17,3 @@ export default function TabTwoScreen() {
     <PostMain/>
   );
 }
-
-
-/*
-<PostForm/>
-          <PostList/>
- <PostItem/>
-*/
-
-/**
- * <View style={styles.switchButton}>
-          <Text>Vibration</Text>
-          <SwitchToggle/></View>
- */

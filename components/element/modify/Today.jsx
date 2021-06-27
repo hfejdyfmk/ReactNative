@@ -60,8 +60,8 @@ class Today extends React.Component {
         //document.body.className = `weather-bg ${group}`;
         //document.querySelector('.weather-bg .mask').className = `mask ${masking ? 'masking' : ''}`;
         //console.log(document.querySelector('.weather-bg .mask').className);
-        let AddButtonColor = isAdd ? 'secondary' : 'primary';
-        let AddButtonText = isAdd ? 'Cancel' : 'Add One';
+        let AddButtonColor = isAdd ? 'dodgerblue' : 'gray';
+        let AddButtonText = isAdd ? 'Add One' : 'Cancel';
         /*return (
             <div>id</div>
             <View>
@@ -71,7 +71,7 @@ class Today extends React.Component {
 
         return (
             <View>
-                <Button rounded onPress={this.handleToggle}><Text>{AddButtonText}</Text></Button>
+                <Button style={{ backgroundColor: AddButtonColor }} rounded onPress={this.handleToggle}><Text style={styles.addButton}>{AddButtonText}</Text></Button>
                 <Collapsible collapsed={isAdd}>
                     <PostForm />
                 </Collapsible>
@@ -95,3 +95,9 @@ export default connect(state => ({
     searchText: state.searchText,
     isAdd: state.postForm.add,
 }))(Today);
+
+const styles = StyleSheet.create({
+    addButton: {
+        color: 'white',
+    },
+})

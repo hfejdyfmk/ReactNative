@@ -47,15 +47,20 @@ class PostItem extends React.Component {
         let { reminding } = this.props;
         let itemTable = undefined;
         let header = isPersonal ? Name : locationType
-        let iconColor = isPersonal ? 'dodgerblue' : 'darkturquoise';
+        let iconColor = isPersonal ? 'darkturquoise' : 'lightskyblue';
         console.log(reminding);
         if (reminding != undefined) {
             if (reminding.length) {
-                const itemTableHead = <Text>ItemName Notify as Leaving Entering</Text>
+                const itemTableHead = <Text style={{ textAlign: 'center' }}>ItemName Notify as Leaving Entering</Text>
                 //console.log(reminding);
                 const itemTableBody = reminding.map(item => (
                     //console.log(item)
-                    <Text>{item.Name}{item.leaving ? 'V' : 'X'}{item.entering ? 'V' : 'X'}</Text>
+                    <View key={item.id} style={styles.itemStyle}>
+                        <Text style={{ width: 115 }}>{item.Name}</Text>
+                        <Text>{item.leaving ? 'V' : 'X'}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            {item.entering ? 'V' : 'X'}</Text>
+                    </View>
                 ));
                 //console.log(itemTableBody);
                 itemTable = (
@@ -70,45 +75,23 @@ class PostItem extends React.Component {
         let vibtext = vibrate ? 'on' : 'Off';
 
         return (
-            <View>
-                <View style={styles.container}>
-
-                    <Pressable style={styles.collapsebutton} onPress={this.handleOpen}>
-                        <View>
-                            <Text>{header}</Text>
-                            <Text>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</Text>
+            <View style={styles.container}>
+                <View style={styles.horizontal}>
+                    <Pressable style={[styles.collapsebutton, { backgroundColor: iconColor }]} onPress={this.handleOpen}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <Text style={styles.headerText}>{header}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</Text>
+                            <Text style={styles.headerText}>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</Text>
                         </View>
                     </Pressable>
 
-
-                    <TouchableOpacity style={styles.buttonStyle} onPress={this.handleX}>
-                        <Text>X</Text>
+                    <TouchableOpacity style={[styles.buttonStyle]} onPress={this.handleX}>
+                        <Text style={styles.headerText}>X</Text>
                     </TouchableOpacity>
                 </View>
-
                 <Collapsible collapsed={this.props.isOpen}>
-                    <View>{itemTable}</View>
+                    <View style={[styles.itemTableStyle]}>{itemTable}</View>
                 </Collapsible>
             </View>
-            /*
-            <Collapse style={styles.container}>
-                <View>
-                <CollapseHeader isExpanded={this.props.isOpen} onToggle={this.handleOpen}>
-                    <View>
-                    <TouchableWithoutFeedback style={{ backgroundColor: { iconColor }, height: 1, width: 1 }} />
-                    <Text>{header}</Text>
-                    <Text>Vol:&nbsp;{volume}%&nbsp;,&nbsp;vibrate:&nbsp;{vibtext}</Text>
-                    <TouchableOpacity style={styles.buttonStyle} onPress={this.handleX}>
-                        <Text>X</Text>
-                    </TouchableOpacity>
-                    </View>
-                </CollapseHeader>
-                <CollapseBody>
-                    {itemTable}
-                </CollapseBody>
-                </View>
-            </Collapse>*/
-
         )
     }
 
@@ -128,30 +111,48 @@ export default connect((state, ownProps) => ({
 
 const styles = StyleSheet.create({
     buttonStyle: {
+        flex: 0.15,
         backgroundColor: '#ff0000',
-        padding: 10,
-        margin: 15,
-        height: 40,
-        marginRight: 0,
-        marginLeft: 0,
+        flexDirection: 'column',
+        borderTopRightRadius: 5,
+        justifyContent: 'center'
     },
     collapsebutton: {
-        backgroundColor: '#55ff55',
-        padding: 10,
-        margin: 15,
-        height: 40,
-        marginRight: 0,
-        marginLeft: 0,
+        flex: 0.85,
+        flexDirection: 'column',
+        borderWidth: 0,
+        borderTopLeftRadius: 5,
+
     },
     container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        backgroundColor: "#fff",
+        padding: 0,
+        margin: 1,
+        backgroundColor: 'transparent',
+    },
+    horizontal: {
         flexDirection: "row",
-        padding: 20,
+        justifyContent: 'center'
+
     },
-    input: {
-        margin: 15,
-        borderColor: '#4A4444',
-        borderWidth: 1,
-        marginRight: 0,
-        marginLeft: 0,
+    itemTableStyle: {
+        backgroundColor: 'lightgray',
+        flex: 1,
+        borderWidth: 0,
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+        justifyContent: 'center'
     },
+    itemStyle: {
+        height: 30,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    headerText: {
+        textAlign: 'center',
+        fontSize: 18,
+    }
 })

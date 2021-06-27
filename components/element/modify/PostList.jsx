@@ -32,8 +32,8 @@ class PostList extends React.Component {
 
         let children = (
             <ListItem>
-                <Text>No post here.</Text>
-                <Text>Go add some posts.</Text>
+                <Text>No previous set here.</Text>
+                <Text>Go set some place.</Text>
             </ListItem>
         );
         if (posts.length) {
