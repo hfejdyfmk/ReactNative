@@ -2,7 +2,7 @@
 import Icon from 'react-native-vector-icons/MaterialIcons'
 // import PropTypes from 'prop-types'
 
-const ICON_SIZE = 24
+const ICON_SIZE = 24;
 
 import React, { useState, useEffect } from 'react'
 import { View, Switch, StyleSheet} from 'react-native';

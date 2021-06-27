@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { GiftedChat, InputToolbar } from 'react-native-gifted-chat'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+import {View, Text} from '../Themed'
+import { GiftedChat, InputToolbar } from 'react-native-gifted-chat'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { StyleSheet } from 'react-native';
-import {View} from '../Themed'
+
+const ICON_SIZE = 24;
 
 const NotificationItem = () => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -20,9 +24,10 @@ const NotificationItem = () => {
       },
     ])
   }, [])
+
   return (
-    <View style={{flex: 1}}>
-      <GiftedChat
+    <View style={{flex: 1, justifyContent: 'space-between'}}>
+      <GiftedChat 
         messages={messages}
         //get rid of the typing box
         minComposerHeight={0}
@@ -30,6 +35,12 @@ const NotificationItem = () => {
         minInputToolbarHeight={0}
         renderInputToolbar={() => null}
       />
+      <Icon
+          name='check-circle'
+          color={'grey'}
+          size={ICON_SIZE}
+      />
+      <Text>geolocation</Text>
     </View>
   )
 }
