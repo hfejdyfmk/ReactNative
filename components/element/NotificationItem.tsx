@@ -40,7 +40,11 @@ const NotificationItem = () => {
           color={'grey'}
           size={ICON_SIZE}
       />
-      <Text>geolocation</Text>
+      <Text
+        style={{color: 'grey'}}
+      >
+        geolocation
+      </Text>
     </View>
   )
 }
