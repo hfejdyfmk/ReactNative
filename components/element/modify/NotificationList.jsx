@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { StyleSheet, View, Text } from 'react-native';
-import ThreeDots from 'components/ThreeDots.jsx'
-import NotificationItem from 'components/NotificationItem.jsx'
-import { listPosts, listMorePosts } from '../states/post-actions';
-//import InfiniteScroll from 'react-infinite-scroller';
+import ThreeDots from './ThreeDots.tsx'
+import NotificationItem from './NotificationItem.tsx'
+import { listNotification } from '../../states/post-actions.js';
 
 
 class NotificationList extends React.Component {
@@ -18,8 +17,8 @@ class NotificationList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.dispatch(listPosts());
-        this.handleScroll = this.handleScroll.bind(this);
+        this.props.dispatch(listNotification(122.2, 23.51));
+        //this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
@@ -37,14 +36,15 @@ class NotificationList extends React.Component {
 
         let { posts } = this.props;
         if (!posts) posts = [];
-        console.log(posts);
+        //console.log(posts);
         /*let children = (
             <ViewItem className='empty d-flex justify-content-center align-items-center'>
                 <div className='empty-text'>No post here.<br />Go add some posts.</div>
             </ListGroupItem>
         );*/
-        let children = "";
+        let children = (<Text>No Notificaiton</Text>);
         if (posts.length) {
+            console.log(posts.length);
             children = posts.map(p => (
                 <View key={p.id}>
                     <NotificationItem {...p} />
@@ -62,11 +62,11 @@ class NotificationList extends React.Component {
         );
     }
 
-    handleScroll(page) {
-        const { posts, searchText } = this.props;
-        //console.log("ss");
-        this.props.dispatch(listMorePosts(searchText, posts[posts.length - 1].id));
-    }
+    // handleScroll(page) {
+    //     //const { posts, searchText } = this.props;
+    //     //console.log("ss");
+    //     //this.props.dispatch(listMorePosts(searchText, posts[posts.length - 1].id));
+    // }
 }
 
 export default connect(state => ({

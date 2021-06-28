@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Platform, View, Text  } from 'react-native';
+import {  ActivityIndicator, StyleSheet, Platform, View, Text } from 'react-native';
 import * as Location from 'expo-location';
 import { useState, useEffect } from 'react';
 import PostMain from '../components/element/modify/MainPost.jsx';
@@ -28,17 +28,30 @@ export default function TabTwoScreen() {
     })();
   }, []);
 
-  console.log(location);
+  //console.log(location);
   if (location){
     return (
       <PostMain currentLat = {location.coords.latitude} currentLon = {location.coords.longitude}/>
     );
   }else{
     return(
-      <View>
-        <Text style ={{fontSize: 50, justifyContent: 'center', textAlign: 'center'}}>Loading...</Text>
+      <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator color="#0000ff" size="large" />
+        <Text style={{fontSize: 20, textAlign: 'center'}}>Loading...</Text>
       </View>
     );
   }
   
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center"
+  },
+  horizontal: {
+    flexDirection: "column",
+    justifyContent: "space-around",
+    padding: 10
+  }
+});

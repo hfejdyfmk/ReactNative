@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+
 import { connect } from 'react-redux';
 import { StyleSheet, View, Text } from 'react-native';
 import NotificationList from './NotificationList.jsx';
-import { listPosts, listMorePosts } from '../states/post-actions';
+import { listNotification } from '../../states/post-actions.js';
 
 class Notification extends React.Component {
     static PropTypes = {
@@ -20,26 +20,21 @@ class Notification extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(listPosts(this.props.searchText));
+        this.props.dispatch(listNotification(122.2, 23.51, this.props.searchText));
     }
 
     componentWillUnmount() { //render後  立即調用
 
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.searchText !== this.props.searchText) {
-            this.props.dispatch(listPosts(nextProps.searchText));
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (nextProps.searchText !== this.props.searchText) {
+    //         this.props.dispatch(listNotification(122.2, 23.51, nextProps.searchText));
+    //     }
+    // }
 
     render() {
         const { masking, postLoading } = this.props;
-        console.log(postLoading);
-        console.log(listMorePosts);
-        //document.body.className = `weather-bg ${group}`;
-        //document.querySelector('.weather-bg .mask').className = `mask ${masking ? 'masking' : ''}`;
-
         return (
             <View>
                 <View>
