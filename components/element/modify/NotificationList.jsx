@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { string } from 'prop-types';
 import { connect } from 'react-redux';
 
 import { StyleSheet, View, Text } from 'react-native';
 import ThreeDots from './ThreeDots.tsx'
 import NotificationItem from './NotificationItem.jsx'
 import { listNotification } from '../../states/post-actions.js';
-
 
 class NotificationList extends React.Component {
     static PropTypes = {
@@ -33,7 +32,6 @@ class NotificationList extends React.Component {
     }
 
     render() {
-
         let { posts } = this.props;
         if (!posts) posts = [];
         posts=[{
@@ -62,6 +60,13 @@ class NotificationList extends React.Component {
             </ListGroupItem>
         );*/
         let children = (<Text>No Notificaiton</Text>);
+        var date= new Date();
+        let month = ({
+            1: 'Jun.', 2: 'Feb.', 3: 'Mar.', 4: 'Apr.',
+            5: 'May.', 6: 'Jun.', 7: 'July.', 8: 'Aug.',
+            9: 'Sep.', 10: 'Oct.', 11: 'Nov.', 12: 'Dec.',
+          })[date.getMonth()+1] ?? 'Default' 
+
         if (posts.length) {
             console.log(posts.length);
             children = posts.map(p => (
@@ -72,9 +77,10 @@ class NotificationList extends React.Component {
         }
 
         return (
-            <View style={{ flex: 1, flexDirection: "column", justifyContent: 'center' }}>
-                <ThreeDots />
+            <View style={{flex: 1}}>
+                <ThreeDots style={{flex: 1}}/>
                 <View style={{flex: 1}}>
+                    <Text style={styles.date}>{month} {date.getDate()}. {date.getFullYear()}</Text>
                     {children}
                 </View>
             </View>
@@ -87,6 +93,14 @@ class NotificationList extends React.Component {
     //     //this.props.dispatch(listMorePosts(searchText, posts[posts.length - 1].id));
     // }
 }
+
+const styles= StyleSheet.create({
+    date:{
+        color: 'grey', 
+        fontSize: 14,
+        textAlign: 'center',
+    },
+})
 
 export default connect(state => ({
     posts: state.post.posts,
