@@ -3,7 +3,7 @@
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
 
-import { Ionicons } from '@expo/vector-icons';
+// import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -14,10 +14,10 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList,  TabThreeParamList} from '../types';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { MaterialIcons, Ionicons } from 'react-native-vector-icons';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-const ICON_SIZE = 20;
+const ICON_SIZE = 25;
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -30,10 +30,9 @@ export default function BottomTabNavigator() {
         name="Notification" //
         component={TabOneNavigator}
         options={{
-          // tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
           tabBarIcon: ({ color }) => <MaterialIcons.Button
-            name={'place'}
-            color={'grey'}
+            name={'notifications'}
+            color={color}
             size={ICON_SIZE}
             backgroundColor={'transparent'}
           />
@@ -43,14 +42,24 @@ export default function BottomTabNavigator() {
         name="Place"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons.Button
+            name={'place'}
+            color={color}
+            size={ICON_SIZE}
+            backgroundColor={'transparent'}
+          />
         }}
       />
       <BottomTab.Screen
         name="Setting"
         component={TabThreeNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons.Button
+            name={'settings'}
+            color={color}
+            size={ICON_SIZE}
+            backgroundColor={'transparent'}
+          />
         }}
       />
     </BottomTab.Navigator>
