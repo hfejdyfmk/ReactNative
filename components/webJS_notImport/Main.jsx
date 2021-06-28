@@ -51,11 +51,6 @@ export default class Main extends React.Component {
 
     }
 
-    /*componentDidMount() {
-        console.log("aaaa");
-        this.props.dispatch(listPosts());
-    }*/
-
     render() {
         return (
             <Router>
