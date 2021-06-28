@@ -26,7 +26,7 @@ import 'localstorage-polyfill';
 //import thunkMiddleware from 'redux-thunk';
 // import loggerMiddleware from 'redux-logger';
 //import { Provider } from 'react-redux';
-import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem } from '../components/states/post-reducers.js';
+import { searchText, post, postForm, NotificationItem, postItem, reminder, remindItem, currentLocation } from '../components/states/post-reducers.js';
 
 
 function todos(state = [], action) {
@@ -50,7 +50,7 @@ store.dispatch({
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   const store = createStore(combineReducers({
-    searchText, post, postForm, NotificationItem, postItem, reminder, remindItem
+    searchText, post, postForm, NotificationItem, postItem, reminder, remindItem, currentLocation,
   }), composeEnhancers(applyMiddleware(thunkMiddleware/*, loggerMiddleware*/)));
 
 

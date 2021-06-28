@@ -11,7 +11,7 @@ import {
     TextInput,
     StyleSheet,
 } from 'react-native'
-
+import Collapsible from 'react-native-collapsible';
 import { connect } from 'react-redux';
 
 //import { getMoodIcon } from 'utilities/weather.js';
@@ -35,7 +35,7 @@ import {
 
 //import './PostForm.css';
 import ListItem from './RemindItemList.jsx'
-
+import Map from './Map.jsx';
 
 class PostForm extends React.Component {
     static propTypes = {
@@ -81,6 +81,7 @@ class PostForm extends React.Component {
         let typeFormColor = isPersonal ? 'darkturquoise' : 'royalblue';;
         let vibColor = (vibration == true) ? 'dodgerblue' : 'gray'
         let typeForm = undefined;
+        //let isMap = locationTypeToggle;
 
         if (isPersonal) {
             typeForm = (
@@ -90,6 +91,9 @@ class PostForm extends React.Component {
                     <Button rounded success onPress={this.handleLTToggle}>
                         <Text>Google Map</Text>
                     </Button>
+                    <Collapsible collapsed={!locationTypeToggle}>
+                        <Map />
+                    </Collapsible>
                 </View>
             );
             //console.log('weird');
@@ -159,7 +163,7 @@ class PostForm extends React.Component {
     handleTypeForm() {
         this.props.dispatch(setlocationTypeToggle(false));
         this.props.dispatch(typeFormSetting());
-        //console.log('set Type of form');
+        this.props.dispatch(selectlocationType('na'));
     }
 
     handleVibrate() {

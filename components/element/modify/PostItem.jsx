@@ -88,7 +88,7 @@ class PostItem extends React.Component {
                         <Text style={styles.headerText}>X</Text>
                     </TouchableOpacity>
                 </View>
-                <Collapsible collapsed={this.props.isOpen}>
+                <Collapsible collapsed={!(this.props.isOpen)}>
                     <View style={[styles.itemTableStyle]}>{itemTable}</View>
                 </Collapsible>
             </View>

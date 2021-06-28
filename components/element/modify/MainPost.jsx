@@ -4,12 +4,20 @@ import { Root, Container, Content } from 'native-base'
 import { StyleSheet, ActivityIndicator } from 'react-native';
 import { Text, View } from '../../Themed';
 import Today from './Today.jsx';
-
-
-export default class PostMain extends React.Component {
+import { setCoor } from "../../states/post-actions.js";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+class PostMain extends React.Component {
+    static propTypes = {
+        dispatch: PropTypes.func,
+    };
     constructor(props) {
         super(props);
-        this.state = { loading: true };
+        this.state = {
+            loading: true
+        };
+        this.handleCoordinate = this.handleCoordinate.bind(this);
+
     }
     componentWillMount = async () => {
         await Font.loadAsync({
@@ -18,7 +26,16 @@ export default class PostMain extends React.Component {
         });
         this.setState({ loading: false });
     }
+
+    handleCoordinate() {
+        if (this.props.currentLat != undefined && this.props.currentLon != undefined) {
+            this.props.dispatch(setCoor(this.props.currentLat, this.props.currentLon));
+        }
+    }
     render() {
+        console.log(this.props);
+
+        this.handleCoordinate();
         if (this.state.loading) {
             return (
                 <ActivityIndicator style={[styles.container, styles.horizontal]} size="large" />
@@ -40,7 +57,7 @@ export default class PostMain extends React.Component {
         }
     }
 }
-
+export default connect(state => ({}))(PostMain);
 const styles = StyleSheet.create({
     container: {
         flex: 1,
