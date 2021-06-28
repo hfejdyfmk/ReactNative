@@ -14,8 +14,10 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabThreeScreen from '../screens/TabThreeScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList,  TabThreeParamList} from '../types';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
+const ICON_SIZE = 20;
 
 export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -28,7 +30,13 @@ export default function BottomTabNavigator() {
         name="Notification" //
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          // tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <MaterialIcons.Button
+            name={'place'}
+            color={'grey'}
+            size={ICON_SIZE}
+            backgroundColor={'transparent'}
+          />
         }}
       />
       <BottomTab.Screen
