@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { StyleSheet, View, Text } from 'react-native';
 import ThreeDots from './ThreeDots.tsx'
-import NotificationItem from './NotificationItem.tsx'
+import NotificationItem from './NotificationItem.jsx'
 import { listNotification } from '../../states/post-actions.js';
 
 
@@ -17,7 +17,7 @@ class NotificationList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.props.dispatch(listNotification(122.2, 23.51));
+        // this.props.dispatch(listNotification(122.2, 23.51));
         //this.handleScroll = this.handleScroll.bind(this);
     }
 
@@ -36,6 +36,25 @@ class NotificationList extends React.Component {
 
         let { posts } = this.props;
         if (!posts) posts = [];
+        posts=[{
+            checked: false,
+            id: 2,
+            inputValue: "try1",
+            isPersonal: true,
+            lat: 24.0,
+            locationType: "",
+            lon: 120.0,
+            prevstatus: false
+        },{
+            checked: false,
+            id: 2,
+            inputValue: "try2",
+            isPersonal: true,
+            lat: 24.0,
+            locationType: "",
+            lon: 120.0,
+            prevstatus: false
+        }];
         //console.log(posts);
         /*let children = (
             <ViewItem className='empty d-flex justify-content-center align-items-center'>
@@ -46,16 +65,16 @@ class NotificationList extends React.Component {
         if (posts.length) {
             console.log(posts.length);
             children = posts.map(p => (
-                <View key={p.id}>
+                <View key={p.id} style={{flex: 1}}>
                     <NotificationItem {...p} />
                 </View>
             ));
         }
 
         return (
-            <View style={{ flexDirection: "column", justifyContent: 'center' }}>
+            <View style={{ flex: 1, flexDirection: "column", justifyContent: 'center' }}>
                 <ThreeDots />
-                <View>
+                <View style={{flex: 1}}>
                     {children}
                 </View>
             </View>
