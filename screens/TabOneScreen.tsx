@@ -48,7 +48,7 @@ export default function TabOneScreen() {
   // if (location) {  //location
     return (
       <View style={{flex: 1, backgroundColor: 'rgba(245, 222, 179, 1.0)'}}>
-        <Notification/>
+        <Notification currentLat={location[0].coords.latitude} currentLon={location[0].coords.longitude}/>
       </View>
     );
 

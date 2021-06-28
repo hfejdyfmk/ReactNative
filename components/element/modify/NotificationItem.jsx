@@ -8,19 +8,18 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { StyleSheet } from 'react-native';
 
 const ICON_SIZE = 20;
-const messages= [
-    {
-        _id: 1,
-        text: 'purse, phone!',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-        },
-    }
-];
 
 class NotificationItem extends React.Component{
     static PropTypes= {
+            checked: PropTypes.bool,
+            id: PropTypes.number,
+            inputValue: PropTypes.string,
+            isPersonal: PropTypes.bool,
+            lat: PropTypes.number,
+            locationType: PropTypes.string,
+            lon: PropTypes.number,
+            prevstatus: PropTypes.bool,
+            dispatch: PropTypes.func
     };
 
     constructor(props) {
@@ -36,6 +35,21 @@ class NotificationItem extends React.Component{
     }
 
     render(){
+        const { id, reminding, ts } = this.props;
+        var str = "";
+        for (let t of reminding) {
+            str += t.Name + "\n";
+        }
+        messages= [
+            {
+                _id: id,
+                text: `${str}`,
+                createdAt: new Date(),
+                user: {
+                  _id: 2,
+                },
+            }
+        ];
         return (
             <View style={styles.container}>
                 <View style={styles.chat}>
@@ -52,7 +66,7 @@ class NotificationItem extends React.Component{
                 </View>
                 <View style={styles.message}>
                     <Text style={styles.location}>
-                        geolocation
+                        {this.props.currentLat},{this.props.currentLon}
                     </Text>
                     <MaterialCommunityIcons.Button
                             name={this.state.isCheckedEnabled? 'check-circle': 'check-circle-outline'}

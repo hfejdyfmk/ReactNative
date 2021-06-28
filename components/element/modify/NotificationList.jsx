@@ -11,7 +11,8 @@ class NotificationList extends React.Component {
     static PropTypes = {
         posts: PropTypes.array,
         hasMore: PropTypes.bool,
-        searchText: PropTypes.string
+        searchText: PropTypes.string,
+        dispatch: PropTypes.func,
     };
 
     constructor(props) {
