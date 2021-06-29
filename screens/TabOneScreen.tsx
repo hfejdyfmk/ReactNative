@@ -37,40 +37,42 @@ export default function TabOneScreen() {
       return;
     }
     if (data) {
-      const { locations } = data;
+      // const { locations } = data;
       console.log("hi");
       console.log(data);
-      setLocation(locations);
+      // setLocation(locations);
       // do something with the locations captured in the background
     }
   });
 
-  if (location) {  //location
+  // if (location) {  //location
     return (
-      <Notification currentLat={location[0].coords.latitude} currentLon={location[0].coords.longitude} />
-    );
-
-    /*return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Notification</Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-
-        <Text>This is Setting</Text>
-
-      </View>
-    );*/
-  }
-  else {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Notification</Text>
-        <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-
-        <Text>This is Setting</Text>
-
+      <View style={{flex: 1, backgroundColor: 'rgba(245, 222, 179, 1.0)'}}>
+        <Notification/>
       </View>
     );
-  }
+
+  //   /*return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.title}>Notification</Text>
+  //       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+  //       <Text>This is Setting</Text>
+
+  //     </View>
+  //   );*/
+  // }
+  // else {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.title}>Notification</Text>
+  //       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+  //       <Text>This is Setting</Text>
+
+  //     </View>
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({

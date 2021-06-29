@@ -20,7 +20,7 @@ class Notification extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(listNotification(122.2, 23.51, this.props.searchText));
+        // this.props.dispatch(listNotification(122.2, 23.51, this.props.searchText));
     }
 
     componentWillUnmount() { //render後  立即調用
@@ -36,8 +36,8 @@ class Notification extends React.Component {
     render() {
         const { masking, postLoading } = this.props;
         return (
-            <View>
-                <View>
+            <View style={{flex: 1}}>
+                <View style={{flex: 1}}>
                     <NotificationList />{
                         postLoading &&
                         <Text>Loading...</Text>
