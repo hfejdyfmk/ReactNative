@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { listPosts, createVote, listRemindItem, setAdd } from '../../states/post-actions.js';
+import { Ionicons } from 'react-native-vector-icons'
 import PostForm from './PostForm.jsx';
 import PostList from './PostList.jsx';
 
@@ -71,7 +72,14 @@ class Today extends React.Component {
 
         return (
             <View>
-                <Button style={{ backgroundColor: AddButtonColor }} rounded onPress={this.handleToggle}><Text style={styles.addButton}>{AddButtonText}</Text></Button>
+                {/* <Button style={{ backgroundColor: AddButtonColor }} rounded onPress={this.handleToggle}><Text style={styles.addButton}>{AddButtonText}</Text></Button> */}
+                <Ionicons.Button
+                            name={'add-circle'}
+                            color={AddButtonColor}
+                            size={30}
+                            onPress={this.handleToggle}
+                            backgroundColor={'transparent'}
+                />
                 <Collapsible collapsed={isAdd}>
                     <PostForm />
                 </Collapsible>
