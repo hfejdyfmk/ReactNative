@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-    ListGroup,
-    ListGroupItem
-} from 'reactstrap';
+
+import { StyleSheet, View, Text } from 'react-native';
 import ThreeDots from 'components/ThreeDots.jsx'
 import NotificationItem from 'components/NotificationItem.jsx'
 import { listPosts, listMorePosts } from '../states/post-actions';
@@ -41,26 +39,26 @@ class NotificationList extends React.Component {
         if (!posts) posts = [];
         console.log(posts);
         /*let children = (
-            <ListGroupItem className='empty d-flex justify-content-center align-items-center'>
+            <ViewItem className='empty d-flex justify-content-center align-items-center'>
                 <div className='empty-text'>No post here.<br />Go add some posts.</div>
             </ListGroupItem>
         );*/
         let children = "";
         if (posts.length) {
             children = posts.map(p => (
-                <div key={p.id}>
+                <View key={p.id}>
                     <NotificationItem {...p} />
-                </div>
+                </View>
             ));
         }
 
         return (
-            <div style={{ position: "relative", height: "500px" }} onScroll={this.handleScroll}>
+            <View style={{ flexDirection: "column", justifyContent: 'center' }}>
                 <ThreeDots />
-                <ListGroup >
+                <View>
                     {children}
-                </ListGroup>
-            </div>
+                </View>
+            </View>
         );
     }
 

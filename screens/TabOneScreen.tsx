@@ -1,27 +1,78 @@
-
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
+import Notification from '../components/element/modify/Notification.jsx'
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 //new
 import PropTypes from 'prop-types';
-//import { Alert } from 'react-native-reactstrap'; //改用material UI
-import { connect } from 'react-redux';
 
+import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
+import * as TaskManager from 'expo-task-manager';
+import * as Location from 'expo-location';
+const LOCATION_TASK_NAME = 'background-location-task';
 // <EditScreenInfo path="/screens/TabOneScreen.tsx" />
 
 export default function TabOneScreen() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Notification</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> 
-    
-      <Text>This is Setting</Text>
 
-    </View>
-  );
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.getBackgroundPermissionsAsync();
+      if (status === 'granted') {
+        await Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+          accuracy: Location.Accuracy.Balanced,
+        });
+      }
+
+    })();
+  }, []);
+
+  TaskManager.defineTask(LOCATION_TASK_NAME, ({ data, error }) => {
+    if (error) {
+      // Error occurred - check `error.message` for more details.
+      return;
+    }
+    if (data) {
+      // const { locations } = data;
+      console.log("hi");
+      console.log(data);
+      // setLocation(locations);
+      // do something with the locations captured in the background
+    }
+  });
+
+  // if (location) {  //location
+    return (
+      <View style={{flex: 1, backgroundColor: 'rgba(245, 222, 179, 1.0)'}}>
+        <Notification/>
+      </View>
+    );
+
+  //   /*return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.title}>Notification</Text>
+  //       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+  //       <Text>This is Setting</Text>
+
+  //     </View>
+  //   );*/
+  // }
+  // else {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text style={styles.title}>Notification</Text>
+  //       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+
+  //       <Text>This is Setting</Text>
+
+  //     </View>
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({
@@ -36,7 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
-  separator: { //畫面上的線
+  separator: { //separator line
     marginVertical: 30,
     height: 1,
     width: '80%',

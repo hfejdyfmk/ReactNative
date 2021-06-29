@@ -302,14 +302,12 @@ export function createCheck(id) {
 }
 /* -----------------------------  Notification  -----------------------------------*/
 export function listNotification(lon, lat, searchText) {
-  console.log(lon);
-  console.log(lat);
   return (dispatch, getState) => {
     dispatch(startLoading());
     return listNotificationFromApi(searchText, lon, lat)
       .then((posts) => {
-        console.log("a");
-        console.log(posts);
+        //console.log("a");
+        //console.log(posts);
         dispatch(endListPosts(posts));
       })
       .catch((err) => {
